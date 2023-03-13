@@ -10,3 +10,5 @@
 	#error BigLandsEngine is only on windows at this time please check back later for updates
 
 #endif
+
+#define BIT(x) (1 << x)
