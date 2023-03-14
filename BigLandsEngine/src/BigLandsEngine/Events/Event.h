@@ -1,9 +1,7 @@
 #pragma once
+#include "bepch.h"
 
-#include "Core.h"
-
-#include <string>
-#include <functional>
+#include "BigLandsEngine/Core.h"
 
 namespace BigLandsEngine {
 

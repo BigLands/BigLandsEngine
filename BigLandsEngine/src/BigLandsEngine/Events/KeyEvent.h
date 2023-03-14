@@ -1,8 +1,7 @@
 #pragma once
-
+#include "bepch.h"
+#include "BigLandsEngine/Core.h"
 #include "Event.h"
-
-#include <sstream>
 
 namespace BigLandsEngine {
 

@@ -21,6 +21,9 @@ workspace "BigLandsEngine"
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
+    pchheader "bepch.h"
+    pchsource "BigLandsEngine/src/bepch.cpp"
+
     files
     {
       "%{prj.name}/src/**.h",
@@ -29,7 +32,8 @@ workspace "BigLandsEngine"
 
     includedirs
     {
-      "BigLandsEngine/vendor/spdlog/include"
+      "BigLandsEngine/vendor/spdlog/include",
+      "BigLandsEngine/src"
     }
 
     filter "system:windows"
