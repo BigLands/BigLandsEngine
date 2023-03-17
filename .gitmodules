@@ -4,4 +4,4 @@
 [submodule "BigLandsEngine/vendor/GLFW"]
 	path = BigLandsEngine/vendor/GLFW
 	url = https://github.com/TheCherno/GLFW
-	branch = b4b3190ce
+	branch = b4b43190ce623f1a75c94f7100c2d5b0b7bbb4f8
