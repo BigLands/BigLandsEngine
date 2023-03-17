@@ -1,113 +1,122 @@
 workspace "BigLandsEngine"
-  architecture "x64"
+	architecture "x64"
 
-  configurations
-  {
-    "Debug",
-    "Release",
-    "Dist"
-  }
+	configurations
+	{
+		"Debug",
+		"Release",
+		"Dist"
+	}
 
-  outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
+outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
-  startproject "Project"
+-- Include directories relative to root folder (solution directory)
+IncludeDir = {}
+IncludeDir["GLFW"] = "BigLandsEngine/vendor/GLFW/include"
 
+include "BigLandsEngine/vendor/GLFW"
 
-  project "BigLandsEngine"
-    location "BigLandsEngine"
-    kind "SharedLib"
-    language "C++"
+project "BigLandsEngine"
+	location "BigLandsEngine"
+	kind "SharedLib"
+	language "C++"
 
-    targetdir ("bin/" .. outputdir .. "/%{prj.name}")
-    objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
-    pchheader "bepch.h"
-    pchsource "BigLandsEngine/src/bepch.cpp"
+	pchheader "bepch.h"
+	pchsource "BigLandsEngine/src/bepch.cpp"
 
-    files
-    {
-      "%{prj.name}/src/**.h",
-      "%{prj.name}/src/**.cpp"
-    }
+	files
+	{
+		"%{prj.name}/src/**.h",
+		"%{prj.name}/src/**.cpp"
+	}
 
-    includedirs
-    {
-      "BigLandsEngine/vendor/spdlog/include",
-      "BigLandsEngine/src"
-    }
+	includedirs
+	{
+		"%{prj.name}/src",
+		"%{prj.name}/vendor/spdlog/include",
+		"%{IncludeDir.GLFW}"
+	}
 
-    filter "system:windows"
-      cppdialect "C++17"
-      staticruntime "On"
-      systemversion "latest"
+	links 
+	{ 
+		"GLFW",
+		"opengl32.lib"
+	}
 
-      defines
-      {
-        "BE_PLATFORM_WINDOWS",
-        "BE_BULD_DLL"
-      }
+	filter "system:windows"
+		cppdialect "C++17"
+		staticruntime "On"
+		systemversion "latest"
 
-      postbuildcommands
-      {
-        "{MKDIR} ../bin/" .. outputdir .. "/Project",
-        "{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Project"
-      }
+		defines
+		{
+			"BE_PLATFORM_WINDOWS",
+			"BE_BUILD_DLL"
+		}
 
-    filter "configurations:Debug"
-      defines "BE_DEBUG"
-      symbols "On"
+		postbuildcommands
+		{
+			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Project")
+		}
 
-    filter "configurations:Release"
-      defines "BE_RELEASE"
-      optimize "On"
+	filter "configurations:Debug"
+		defines "BE_DEBUG"
+		symbols "On"
 
-    filter "configurations:Dist"
-      defines "BE_DIST"
-      optimize "On"
+	filter "configurations:Release"
+		defines "BE_RELEASE"
+		optimize "On"
 
-  project "Project"
-    location "Project"
-    kind "ConsoleApp"
-    language "C++"
+	filter "configurations:Dist"
+		defines "BE_DIST"
+		optimize "On"
 
-    targetdir ("bin/" .. outputdir .. "/%{prj.name}")
-    objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+project "Project"
+	location "Project"
+	kind "ConsoleApp"
+	language "C++"
 
-    files
-    {
-      "%{prj.name}/src/**.h",
-      "%{prj.name}/src/**.cpp"
-    }
+	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
-    includedirs
-    {
-      "BigLandsEngine/vendor/spdlog/include",
-      "BigLandsEngine/src"
-    }
+	files
+	{
+		"%{prj.name}/src/**.h",
+		"%{prj.name}/src/**.cpp"
+	}
 
-    links
-    {
-      "BigLandsEngine"
-    }
+	includedirs
+	{
+		"BigLandsEngine/vendor/spdlog/include",
+		"BigLandsEngine/src"
+	}
 
-    filter "system:windows"
-      cppdialect "C++17"
-      staticruntime "On"
-      systemversion "latest"
+	links
+	{
+		"BigLandsEngine"
+	}
 
-      defines
-      {
-        "BE_PLATFORM_WINDOWS"
-      }
+	filter "system:windows"
+		cppdialect "C++17"
+		staticruntime "On"
+		systemversion "latest"
 
-    filter "configurations:Debug"
-      defines "BE_DEBUG"
-      symbols "On"
+		defines
+		{
+			"BE_PLATFORM_WINDOWS"
+		}
 
-    filter "configurations:Release"
-      defines "BE_RELEASE"
-      optimize "On"
+	filter "configurations:Debug"
+		defines "BE_DEBUG"
+		symbols "On"
 
-    filter "configurations:Dist"
-      defines "BE_DIST"
-      optimize "On"
+	filter "configurations:Release"
+		defines "BE_RELEASE"
+		optimize "On"
+
+	filter "configurations:Dist"
+		defines "BE_DIST"
+		optimize "On"

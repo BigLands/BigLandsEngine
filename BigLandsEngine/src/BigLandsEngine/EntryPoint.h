@@ -4,11 +4,12 @@
 
 extern BigLandsEngine::Application* BigLandsEngine::CreateApplication();
 
-int main(int argc, char** argv) {
+int main(int argc, char** argv)
+{
 	BigLandsEngine::Log::Init();
-	BE_CORE_WARN("LOGGER WORK");
+	BE_CORE_WARN("Initialized Log!");
 	int a = 5;
-	BE_INFO("LOGGER WORK Var={0}", a);
+	BE_INFO("Hello! Var={0}", a);
 
 	auto app = BigLandsEngine::CreateApplication();
 	app->Run();

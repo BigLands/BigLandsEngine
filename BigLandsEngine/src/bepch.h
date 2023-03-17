@@ -6,6 +6,8 @@
 #include <algorithm>
 #include <functional>
 
+#include "BigLandsEngine/Log.h"
+
 #include <string>
 #include <sstream>
 #include <vector>

@@ -1,11 +1,11 @@
 #pragma once
-#include "bepch.h"
 
 #include "Core.h"
 #include "Events/Event.h"
-
+#include "Window.h"
 
 namespace BigLandsEngine {
+
 	class BIGLANDSENGINE_API Application
 	{
 	public:
@@ -13,10 +13,12 @@ namespace BigLandsEngine {
 		virtual ~Application();
 
 		void Run();
+	private:
+		std::unique_ptr<Window> m_Window;
+		bool m_Running = true;
 	};
 
-	// to be defind in client
+	// To be defined in CLIENT
 	Application* CreateApplication();
 
 }
-
