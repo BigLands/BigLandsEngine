@@ -16,6 +16,8 @@ git clone --recursive https://github.com/BigLands/BigLandsEngine.git
 ```
 This will clone the main repository as well as all submodules, including external libraries and tools.
 
+there is a problom with glfw right now you can replace your file with https://github.com/TheCherno/glfw/tree/b4b43190ce623f1a75c94f7100c2d5b0b7bbb4f8
+
 # Building the Project
 After cloning the repository, navigate to the root directory of the project and run the make project.bat file. This will create the Visual Studio solution files required to build the project.
 
