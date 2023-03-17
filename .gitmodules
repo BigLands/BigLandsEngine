@@ -1,7 +1,14 @@
 [submodule "BigLandsEngine/vendor/spdlog"]
 	path = BigLandsEngine/vendor/spdlog
 	url = https://github.com/gabime/spdlog
+<<<<<<< HEAD
 [submodule "BigLandsEngine/vendor/GLFW"]
 	path = BigLandsEngine/vendor/GLFW
+<<<<<<< HEAD
 	url = ../../TheCherno/glfw/tree/b4b43190ce623f1a75c94f7100c2d5b0b7bbb4f8
 	branch = master
+=======
+	url = https://github.com/TheCherno/GLFW
+=======
+>>>>>>> 509b1379f7e49b614c16ba2e0bcf4998669e4f26
+>>>>>>> 3649a0d3c04628f9af3dfc506ae9f5adcebcfa7f
