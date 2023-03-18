@@ -1,5 +1,16 @@
 workspace "BigLandsEngine"
+    architecture "x64"
+
+    configurations
+    {
+        "Debug",
+        "Release",
+        "Dist"
+    }
+
+workspace "BigLandsEngine"
 	architecture "x64"
+	startproject "Project"
 
 	configurations
 	{
