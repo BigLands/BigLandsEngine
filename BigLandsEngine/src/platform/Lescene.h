@@ -1,0 +1,1 @@
+// anyting in BiglandsEngine/src/BigLandsEngine/platform is free use with no lisence
