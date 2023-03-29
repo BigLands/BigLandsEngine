@@ -4,6 +4,7 @@
 
 #include "BigLandsEngine/Application.h"
 #include "BigLandsEngine/Log.h"
+#include "BigLandsEngine/Layer.h"
 
 // Entry Point
 
